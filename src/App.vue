@@ -7,11 +7,11 @@
   
 </template>
 <script>
-import Header from "./assets/components/shared/Header"
-import Footer from "./assets/components/shared/Footer"
-// import ProductPurchase from "./assets/components/products/ProductPurchase"
-//  import ProductSell from "./assets/components/products/ProductSell"
-import ProductList from "./assets/components/products/ProductList"
+import Header from "./components/shared/Header"
+import Footer from "./components/shared/Footer"
+// import ProductPurchase from "./components/products/ProductPurchase"
+//  import ProductSell from "./components/products/ProductSell"
+import ProductList from "./components/products/ProductList"
 
 export default{
   components:{
