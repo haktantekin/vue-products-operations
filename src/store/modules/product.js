@@ -24,12 +24,14 @@ const actions = {
     initApp({ commit }){
         // Vue Resource İşlemleri
     },
-    saveProduct({ commit }, payload){
+    saveProduct({ commit, state }, product){
         // Vue Resource İşlemleri
 
-        Vue.http.post("https://urun-islemleri-prod-1b952-default-rtdb.firebaseio.com/products.json", payload)
+        Vue.http.post("https://urun-islemleri-prod-1b952-default-rtdb.firebaseio.com/products.json", product)
         .then((response)=>{
-            console.log(response);
+            product.key = response.body.name;
+            commit("updateProductList", product);
+            console.log(state.products);
         } )
 
     },
