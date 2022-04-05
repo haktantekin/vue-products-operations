@@ -37,12 +37,14 @@ export default{
                 title:"",
                 count: null,
                 price: null,
-                description:""
+                description:"",
+                saveButtonClick: false
             }
         }
     },
     methods:{
         saveProduct(){
+            this.saveButtonClick = true;
             this.$store.dispatch("saveProduct", this.product)
         }
     },
@@ -57,7 +59,7 @@ export default{
         }
     },
     beforeRouteLeave (to, from, next) {
-        if(this.product.title.length > 0 || this.product.count > 0 || this.product.price > 0 || this.product.description.length){
+        if((this.product.title.length > 0 || this.product.count > 0 || this.product.price > 0 || this.product.description.length) && !this.saveButtonClick){
             if(confirm("Kaydedilmemiş değişiklikler var, çıkmak istiyor musunuz?")){
              next();
             }
