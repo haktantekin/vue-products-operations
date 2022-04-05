@@ -55,6 +55,20 @@ export default{
                 return true;
             }
         }
+    },
+    beforeRouteLeave (to, from, next) {
+        if(this.product.title.length > 0 || this.product.count > 0 || this.product.price > 0 || this.product.description.length){
+            if(confirm("Kaydedilmemiş değişiklikler var, çıkmak istiyor musunuz?")){
+             next();
+            }
+            else{
+            next("false");
+            }
+        }
+        else{
+            next();
+        }
+
     }
 }
 </script>
