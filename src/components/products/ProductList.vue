@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h3>Ürün Listesi</h3>
                     <hr>
-                    <table class="table table-hover table-striped table-bordered">
+                    <table class="table table-hover table-striped table-bordered" v-if="getProducts.length > 0">
                         <thead>
                         <th>id</th>
                         <th>Ürün Adı</th>
@@ -24,7 +24,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="alert alert-warning">
+                    <div class="alert alert-warning" v-else>
                         <strong>Henüz Burada Bir Kayıt Bulamadık</strong>
                         <br>
                         <small>Kayıt Eklemek için Ürün İşlemleri menüsünden yararlanabilirsiniz
@@ -44,5 +44,7 @@ export default{
 }
 </script>
 <style>
-
+    .badge-info{
+        background: red;
+    }
 </style>

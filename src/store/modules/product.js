@@ -24,6 +24,14 @@ const mutations ={
 const actions = {
     initApp({ commit }){
         // Vue Resource İşlemleri
+        Vue.http.get("https://urun-islemleri-prod-1b952-default-rtdb.firebaseio.com/products.json")
+        .then(response=>{
+            let data = response.body;
+            for(let key in data){
+                data[key].key = key;
+                commit("updateProductList", data[key]);
+            }
+        })
     },
     saveProduct({ dispatch, commit }, product){
         // Vue Resource İşlemleri
