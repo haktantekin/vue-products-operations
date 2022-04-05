@@ -19,7 +19,7 @@
                             <td class="align-middle text-center"><span class="badge badge-info"> {{ product.key }} </span></td>
                             <td class="align-middle text-center"> {{ product.title }} </td>
                             <td class="align-middle text-center"> {{ product.count }} </td>
-                            <td style="width: 120px;"> {{ product.price }}</td>
+                            <td class="text-center align-middle" :class="getCountClasses(product.count)"> {{ product.price | currency}}</td>
                             <td class="align-middle"> {{ product.description }}</td>
                         </tr>
                         </tbody>
@@ -39,7 +39,15 @@
 import { mapGetters } from "vuex"
 export default{
     computed:{
-        ...mapGetters(["getProducts"])
+        ...mapGetters(["getProducts"]),
+    },
+    methods:{
+        getCountClasses(count){
+            return{
+              'btn-danger text-white' : count == 0 || count == null, 
+              'btn-success text-white' : count > 0 
+            }
+        }
     }
 }
 </script>
@@ -47,4 +55,14 @@ export default{
     .badge-info{
         background: red;
     }
+    .btn-success {
+    color: #fff;
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
 </style>
