@@ -8,8 +8,10 @@
                 <div class="form-group">
                     <label>Ürün Adı</label>
                     <select class="form-control" v-model="selectedProduct" @change="productSelected">
+                        <option selected disabled>Lütfen bir ürün seçiniz</option>
                         <option 
-                         :value="product.key"
+                        :disabled="product.count == 0"
+                        :value="product.key"
                          v-for="product in getProducts">{{product.title}}</option>
                     </select>
                 </div>
