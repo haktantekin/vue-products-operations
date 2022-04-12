@@ -49,16 +49,42 @@ const actions = {
                 sale: 0,
                 count: product.count
             }
-
             dispatch("setTradeResult", tradeResult);
-
             router.replace("/")
 
         })
 
     },
-    sellProduct({ commit }, payload){
+    sellProduct({ state, commit, dispatch }, payload){
         // Vue Resource İşlemleri
+
+        // pass by reference
+        // pass by value
+
+
+        let product = state.products.filter(element =>{
+            return element.key == payload.key;
+        })
+            if(product){
+
+                let totalCount = product[0].count - payload.count;
+
+                Vue.http.patch("https://urun-islemleri-prod-1b952-default-rtdb.firebaseio.com/products/" + payload.key + ".json", { count : totalCount })
+                .then(response =>{
+                    product[0].count = totalCount;
+                    let tradeResult = {
+                        purchase: 0,
+                        sale: product[0].price,
+                        count: payload.count
+                    }
+                    dispatch("setTradeResult", tradeResult);
+                    router.replace("/")
+                })
+
+            }
+
+       
+
         
 
     }
