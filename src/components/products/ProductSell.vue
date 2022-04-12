@@ -41,7 +41,7 @@
                     <input type="text" v-model="product_count" class="form-control" placeholder="Ürün adetini giriniz..">
                 </div>
                 <hr>
-                <button @click="save" class="btn btn-primary">Kaydet</button>
+                <button @click="save" :disabled="saveEnabled" class="btn btn-primary">Kaydet</button>
             </div>
         </div>
     </div>
@@ -60,6 +60,16 @@ export default{
     },
     computed: {
         ...mapGetters(["getProducts"]),
+        saveEnabled(){
+            if(this.selectedProduct !== null && this.product_count > 0){
+                console.log(1);
+                return false;
+            }
+            else{
+                console.log(2);
+                return true;
+            }
+        },
         isLoading(){
             if(this.saveButtonClick){
                 return{
